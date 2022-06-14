@@ -3,28 +3,27 @@ import "./App.css";
 
 function App() {
   const [data, setData] = useState(0);
+  const handle = (val) => {
+    setData(data + val);
+  };
   return (
     <div className="App">
       <h2 data-testid="counter-value">{data}</h2>
-      {data !== 0 ? (
-        <button
-          onClick={() => {
-            setData(data - 1);
-          }}
-          data-testid="counter-increment-button"
-        >
-          sub
-        </button>
-      ) : (
-        <button disabled data-testid="counter-increment-button">
-          sub
-        </button>
-      )}
+
       <button
+        disabled={data === 0 ? true : false}
         onClick={() => {
-          setData(data + 1);
+          handle(-1);
         }}
         data-testid="counter-decrement-button"
+      >
+        sub
+      </button>
+      <button
+        onClick={() => {
+          handle(1);
+        }}
+        data-testid="counter-increment-button"
       >
         add
       </button>
